@@ -2,11 +2,11 @@
 This is a GraphQL api to the [iptv-org database](https://github.com/iptv-org/database)
 
 # Getting Started
-To start with this api you need install first the requirements.
-and then run the api file.
+To start with this api you need install the requirements.
+and then run the main file.
 ```bash
-python -m pip install -r requirements.txt 
-python src/api.py
+python -m pip install -r requirements.txt
+python src/main.py
 ```
 
 # Schema
