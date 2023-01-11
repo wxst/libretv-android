@@ -29,7 +29,6 @@ def get_modules(path, is_dir=False):
         elif dir_path.endswith("py"):
             modules.append(filename)
 
-    print(modules)
     return modules
 
 
