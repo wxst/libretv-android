@@ -1,0 +1,7 @@
+type Stream{
+  channelId: String
+  channelName: String!
+  resolution: [String!]!
+  label: String
+  url: String!
+}

@@ -1,0 +1,5 @@
+type Region{
+  name: String!
+  code: String!
+  countries: [String!]!
+}

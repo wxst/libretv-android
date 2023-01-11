@@ -1,0 +1,19 @@
+type Channel{
+  id: Int!
+  name: String!
+  altNames: [String!]
+  network: [String!]
+  owners: [String!]
+  country: Country
+  subdivision: Subdivision
+  city: String
+  broadcastArea: [String!]!
+  languages: [Language]!
+  categories: [Category]!
+  nsfw: Boolean!
+  launched: String
+  closed: String
+  replaceBy: String
+  website: String
+  logo: String!
+}

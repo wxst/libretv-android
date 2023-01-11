@@ -1,4 +1,10 @@
 type Query{
-  version: String
-  mantainer: String
+  version: String!
+  mantainer: String!
+  channels: [Channel]!
+  countries: [Country]!
+  subdivisions: [Subdivision]!
+  regions: [Region]!
+  blocklists: [Blocklist]!
+  streams: [Stream]!
 }

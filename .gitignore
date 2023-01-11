@@ -130,3 +130,5 @@ dmypy.json
 
 # Environment
 .iptv_api/
+# Repositories data
+data/
