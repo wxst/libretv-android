@@ -9,5 +9,8 @@ python -m pip install -r requirements.txt
 python src/main.py
 ```
 
-# Schema
-The schema is based on schema iptv-org declare on [Contributing Guide](https://github.com/iptv-org/database/blob/master/CONTRIBUTING.md)
+# Schemas
+The schemas are based on the following guides.
+channels, categories,countries,languagues,regions,subdivisions, blocklist at [Database Contributing Guide](https://github.com/iptv-org/database/blob/master/CONTRIBUTING.md)
+stream at [Streams Contrubuting Guide](https://github.com/iptv-org/iptv/blob/master/CONTRIBUTING.md)
+

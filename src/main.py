@@ -5,7 +5,13 @@ import uvicorn
 from git import Repo, RemoteProgress
 from git import InvalidGitRepositoryError, NoSuchPathError
 
-from constants import IPTV_REPOSITORY_URL, IPTV_REPOSITORY_PATH
+from constants import (IPTV_DATABASE_URL,
+                       IPTV_DATABASE_PATH,
+                       IPTV_STREAM_URL,
+                       IPTV_STREAM_PATH,
+                       IPTV_EPG_URL,
+                       IPTV_EPG_PATH
+                       )
 
 
 class CloneProgress(RemoteProgress):
@@ -13,16 +19,21 @@ class CloneProgress(RemoteProgress):
         print(f"\r{int(cur_count)}/{int(max_count)}: {message}", end="")
 
 
-if (__name__ == "__main__"):
+def load_repo(url, path):
+    """
+    Clone or Update a repository based on url
+    return: Repo Object
+    """
+
     # Check if the repository exists if not fetch it
-    print(f"[Warning]: Fetching iptv-org repository at {IPTV_REPOSITORY_PATH}")
+    print(f"[Warning]: Fetching iptv-org repository at {url}")
 
     try:
-        repo = Repo(IPTV_REPOSITORY_PATH)
+        repo = Repo(path)
     except (InvalidGitRepositoryError, NoSuchPathError):
         repo = Repo.clone_from(
-            url=IPTV_REPOSITORY_URL,
-            to_path=IPTV_REPOSITORY_PATH,
+            url=url,
+            to_path=path,
             progress=CloneProgress(),
             branch="master"
         )
@@ -39,6 +50,17 @@ if (__name__ == "__main__"):
     last_commit_date = time.gmtime(last_commit.committed_date)
     last_commit_date = time.strftime('%Y-%m-%d %H:%M:%S', last_commit_date)
     print(last_commit_date)
+
+    return repo
+
+
+if (__name__ == "__main__"):
+    # load database
+    repos = [
+        load_repo(IPTV_DATABASE_URL, IPTV_DATABASE_PATH),
+        load_repo(IPTV_STREAM_URL, IPTV_STREAM_PATH),
+        load_repo(IPTV_EPG_URL, IPTV_EPG_PATH)
+    ]
 
     #  Running the GraphQL server
     print("[Warning]: running the server with uvicorn")
