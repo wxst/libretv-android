@@ -1,2 +1,2 @@
-def flag(_, info):
-    return "[flag] Not implemented yet"
+def flag(obj, info):
+    return obj["flag"]

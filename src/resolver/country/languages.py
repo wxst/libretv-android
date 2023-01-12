@@ -1,2 +1,3 @@
-def languages(_, info):
-    return ["[languages] Not implemented yet"]
+def languages(obj, info):
+    value = obj["languages"].split(";")
+    return value
