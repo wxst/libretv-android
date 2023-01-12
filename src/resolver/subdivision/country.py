@@ -1,2 +1,2 @@
-def country(_, info):
-    return "[country] Not implemented yet"
+def country(obj, info):
+    return obj["country"]
