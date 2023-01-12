@@ -7,7 +7,6 @@ def categories(obj, info):
     value = obj["categories"]
     if not pd.isnull(value):
         values = value.split(";")
-        print(values)
         _categories = []
         for category in values:
             _categories.append(find_value(db_categories, "id", category))

@@ -1,2 +1,2 @@
-def code(_, info):
-    return "[code] Not implemented yet"
+def code(obj, info):
+    return obj["code"]
