@@ -9,7 +9,7 @@ type Channel{
   city: String
   broadcastArea: [String!]!
   languages: [Language]!
-  categories: [Category]!
+  categories: [Category!]
   nsfw: Boolean!
   launched: String
   closed: String
