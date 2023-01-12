@@ -1,2 +1,8 @@
-def city(_, info):
-    return "[city] Not implemented yet"
+import pandas as pd
+
+
+def city(obj, info):
+    value = obj["city"]
+    if not pd.isnull(value):
+        return value
+    return None

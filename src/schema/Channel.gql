@@ -1,8 +1,8 @@
 type Channel{
-  id: Int!
+  id: String!
   name: String!
   altNames: [String!]
-  network: [String!]
+  network: String
   owners: [String!]
   country: Country
   subdivision: Subdivision
@@ -16,4 +16,5 @@ type Channel{
   replaceBy: String
   website: String
   logo: String!
+  stream: Stream
 }

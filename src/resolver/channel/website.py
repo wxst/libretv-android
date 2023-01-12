@@ -1,2 +1,8 @@
-def website(_, info):
-    return "[website] Not implemented yet"
+import pandas as pd
+
+
+def website(obj, info):
+    value = obj["website"]
+    if not pd.isnull(value):
+        return value
+    return None

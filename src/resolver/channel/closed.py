@@ -1,8 +1,8 @@
 import pandas as pd
 
 
-def launched(obj, info):
-    value = obj["launched"]
+def closed(obj, info):
+    value = obj["closed"]
     if not pd.isnull(value):
         return value
     return None

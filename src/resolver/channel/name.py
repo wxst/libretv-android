@@ -1,2 +1,2 @@
-def name(_, info):
-    return "[name] Not implemented yet"
+def name(obj, info):
+    return obj["name"]

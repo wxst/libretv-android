@@ -1,2 +1,2 @@
-def nsfw(_, info):
-    return False
+def nsfw(obj, info):
+    return obj["is_nsfw"]

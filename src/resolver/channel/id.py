@@ -1,2 +1,2 @@
-def id(_, info):
-    return "[id] Not implemented yet"
+def id(obj, info):
+    return obj["id"]

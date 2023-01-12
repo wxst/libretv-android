@@ -1,2 +1,2 @@
-def logo(_, info):
-    return "[logo] Not implemented yet"
+def logo(obj, info):
+    return obj["logo"]
