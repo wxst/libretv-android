@@ -1,6 +1,7 @@
 import time
 
 import uvicorn
+from streams import load_streams
 
 from git import Repo, RemoteProgress
 from git import InvalidGitRepositoryError, NoSuchPathError
@@ -39,7 +40,7 @@ def load_repo(url, path):
         )
 
     # Check updates
-    repo.remotes.origin.pull()
+    repo.remotes.origin.pull(progress=CloneProgress())
 
     # Get the date and the last commit
     head = repo.head
@@ -61,6 +62,9 @@ if (__name__ == "__main__"):
         load_repo(IPTV_STREAM_URL, IPTV_STREAM_PATH),
         load_repo(IPTV_EPG_URL, IPTV_EPG_PATH)
     ]
+
+    # loading data
+    load_streams()
 
     #  Running the GraphQL server
     print("[Warning]: running the server with uvicorn")

@@ -6,5 +6,5 @@ type Query{
   subdivisions: [Subdivision]!
   regions: [Region]!
   blocklists: [Blocklist]!
-  streams: [Stream]!
+  streams(length: Int!): [Stream!]!
 }

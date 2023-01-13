@@ -22,3 +22,5 @@ IPTV_DATABASE_BLOCKLIST = os.path.join(IPTV_DATABASE_CSV_PATH, "blocklist.csv")
 IPTV_DATABASE_REGIONS = os.path.join(IPTV_DATABASE_CSV_PATH, "regions.csv")
 IPTV_DATABASE_SUBDIVISIONS = os.path.join(
     IPTV_DATABASE_CSV_PATH, "subdivisions.csv")
+
+IPTV_STREAM_M3U = os.path.join(IPTV_STREAM_PATH, "streams")

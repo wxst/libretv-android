@@ -10,5 +10,7 @@ def find_value(db, column, value):
     # Find the item in the df
     db = db.loc[db[column] == value]
     # Because to_dict return a dict_values cast to list and get the values
-    row = list(db.T.to_dict().values())[0]
-    return row
+    values = list(db.T.to_dict().values())
+    if len(values) > 0:
+        return values[0]
+    return None

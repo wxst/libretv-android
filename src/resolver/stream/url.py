@@ -1,2 +1,5 @@
-def url(_, info):
-    return "[url] Not implemented yet"
+import pandas as pd
+
+
+def url(obj, info):
+    return obj["url"]
