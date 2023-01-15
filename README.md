@@ -1,6 +1,9 @@
 # IPTV GraphQL
 This is a GraphQL api to the [iptv-org database](https://github.com/iptv-org/database)
 
+# API URL
+http://104.208.76.45
+
 # Getting Started
 To start with this api you need install the requirements.
 and then run the main file.
