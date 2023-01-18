@@ -1,0 +1,6 @@
+type Guide{
+  languageCode: String
+  channelId: String
+  siteId: String
+  channelName: String
+}

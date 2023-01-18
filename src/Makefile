@@ -1,2 +1,3 @@
 run:
-	python main.py
+	python server.py
+	python -m uvicorn api:app 
