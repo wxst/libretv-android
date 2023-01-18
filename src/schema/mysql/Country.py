@@ -1,0 +1,4 @@
+ID_COUNTRY = 0
+NAME = 1
+CODE = 2
+FLAG = 3
