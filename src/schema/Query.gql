@@ -1,7 +1,7 @@
 type Query{
   version: String!
   mantainer: String!
-  channels(length: Int!): [Channel]!
+  channels(length: Int, search: String, stream: Boolean): [Channel]!
   channel(id: String!): [Channel]!
   countries(length: Int!): [Country]!
   subdivisions: [Subdivision]!
