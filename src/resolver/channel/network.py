@@ -1,8 +1,5 @@
-import pandas as pd
+from schema.mysql import Channel
 
 
 def network(obj, info):
-    value = obj["network"]
-    if not pd.isnull(value):
-        return value
-    return None
+    return obj[Channel.NETWORK]

@@ -1,8 +1,5 @@
-import pandas as pd
+from schema.mysql import Channel
 
 
 def website(obj, info):
-    value = obj["website"]
-    if not pd.isnull(value):
-        return value
-    return None
+    return obj[Channel.WEBSITE]

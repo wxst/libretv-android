@@ -1,10 +1,17 @@
-from data import db_subdivisions
-from utils import find_value
-import pandas as pd
+from schema.mysql import Channel
+from db import db
 
 
 def subdivision(obj, info):
-    code = obj["subdivision"]
-    if not pd.isnull(code):
-        return find_value(db_subdivisions, "code", code)
-    return None
+    id_subdivision = obj[Channel.ID_SUBDIVISION]
+    if not id_subdivision:
+        return None
+
+    cursor = db.cursor()
+    QUERY = f" SELECT * FROM Subdivision "\
+        f"WHERE id_subdivision = {id_subdivision}"
+
+    cursor.execute(QUERY)
+    value = cursor.fetchone()
+    cursor.close()
+    return value

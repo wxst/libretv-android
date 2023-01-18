@@ -1,7 +1,10 @@
-from data import db_channels
+from db import db
 
 
 def channels(*_, length):
-    # Get all the channels data and pass to each field resolver
-    db = db_channels.head(length)
-    return db.T.to_dict().values()
+    cursor = db.cursor()
+    QUERY = f"SELECT * from Channel LIMIT {length}"
+    cursor.execute(QUERY)
+    values = cursor.fetchall()
+    cursor.close()
+    return values

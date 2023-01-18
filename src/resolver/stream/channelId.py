@@ -1,12 +1,5 @@
-import pandas as pd
+from schema.mysql import Stream
 
 
 def channelId(obj, info):
-    value = obj["tvg.id"] 
-    if value == "":
-        return None
-
-    if not pd.isnull(value):
-        return value
-
-    return None
+    return obj[Stream.ID_CHANNEL]

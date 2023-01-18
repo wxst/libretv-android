@@ -1,8 +1,5 @@
-import pandas as pd
+from schema.mysql import Channel
 
 
 def closed(obj, info):
-    value = obj["closed"]
-    if not pd.isnull(value):
-        return value
-    return None
+    return obj[Channel.CLOSED]

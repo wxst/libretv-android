@@ -1,2 +1,5 @@
+from schema.mysql import Country
+
+
 def flag(obj, info):
-    return obj["flag"]
+    return obj[Country.FLAG]

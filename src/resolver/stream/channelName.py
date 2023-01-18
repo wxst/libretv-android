@@ -1,2 +1,5 @@
-def channelName(_, info):
-    return "[channelName] Not implemented yet"
+from schema.mysql import Stream
+
+
+def channelName(obj, info):
+    return obj[Stream.NAME]

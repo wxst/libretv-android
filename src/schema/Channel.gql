@@ -16,5 +16,5 @@ type Channel{
   replaceBy: String
   website: String
   logo: String!
-  stream: Stream
+  streams: [Stream]!
 }

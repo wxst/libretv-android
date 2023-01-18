@@ -1,8 +1,8 @@
-import pandas as pd
+from schema.mysql import Channel
 
 
 def owners(obj, info):
-    value = obj["owners"]
-    if not pd.isnull(value):
+    value = obj[Channel.OWNERS]
+    if value:
         return value.split(";")
     return None

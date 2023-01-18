@@ -1,2 +1,5 @@
-def label(_, info):
-    return "[label] Not implemented yet"
+from schema.mysql import Stream
+
+
+def label(obj, info):
+    return obj[Stream.LABEL]

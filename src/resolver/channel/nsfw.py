@@ -1,2 +1,5 @@
+from schema.mysql import Channel
+
+
 def nsfw(obj, info):
-    return obj["is_nsfw"]
+    return obj[Channel.IS_NSFW]

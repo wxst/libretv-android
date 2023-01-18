@@ -1,8 +1,5 @@
-import pandas as pd
+from schema.mysql import Channel
 
 
 def launched(obj, info):
-    value = obj["launched"]
-    if not pd.isnull(value):
-        return value
-    return None
+    return obj[Channel.LAUNCHED]
