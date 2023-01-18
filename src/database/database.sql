@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS Channel(
   alt_names TINYTEXT,
   network TINYTEXT,
   owners TINYTEXT,
+  id_subdivision INT,
   broadcast_area TINYTEXT,
   city VARCHAR(50),
   is_nsfw BOOLEAN NOT NULL,
@@ -56,6 +57,7 @@ CREATE TABLE IF NOT EXISTS Channel(
   replaced_by VARCHAR(50),
   website VARCHAR(2083),
   logo VARCHAR(2083),
+  FOREIGN KEY (id_subdivision) REFERENCES Subdivision(id_subdivision),
   PRIMARY KEY (id_channel)
 );
 

@@ -20,6 +20,7 @@ def load():
             alt_names,
             network,
             owners,
+            id_subdivision,
             broadcast_area,
             city,
             is_nsfw,
@@ -33,11 +34,18 @@ def load():
 
     channel_data = ""
     for index, serie in db_channels.iterrows():
+        subdivision = find_value(db_subdivisions, "code", serie["subdivision"])
+        if pd.isnull(subdivision):
+            subdivision_value = "NULL"
+        else:
+            subdivision_value = subdivision["indexes"][0]
+
         channel_data += f'({index+1},'\
                         f'"{serie["name"]}",'\
                         f'{_null(serie["alt_names"])},'\
                         f'{_null(serie["network"])},'\
                         f'{_null(serie["owners"])},'\
+                        f'{subdivision_value},'\
                         f'"{serie["broadcast_area"]}",'\
                         f'{_null(serie["city"])},'\
                         f'{str(serie["is_nsfw"]).upper()},'\
