@@ -1,6 +1,6 @@
 type Country {
   name: String!
   code: String!
-  languages: [String!]!
+  languages: [Language]!
   flag: String!
 }

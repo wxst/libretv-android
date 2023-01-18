@@ -1,5 +1,5 @@
-import pandas as pd
+from schema.mysql import Stream
 
 
 def url(obj, info):
-    return obj["url"]
+    return obj[Stream.URL]

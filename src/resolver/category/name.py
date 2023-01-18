@@ -1,2 +1,5 @@
+from schema.mysql import Category
+
+
 def name(obj, info):
-    return obj["name"]
+    return obj[Category.NAME]

@@ -1,5 +1,5 @@
 type Subdivision{
-  country: String!
+  country: Country!
   name: String!
   code: String!
 }

@@ -1,2 +1,5 @@
+from schema.mysql import Language
+
+
 def name(obj, info):
-    return obj["name"]
+    return obj[Language.NAME]

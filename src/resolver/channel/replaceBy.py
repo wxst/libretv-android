@@ -1,8 +1,5 @@
-import pandas as pd
+from schema.mysql import Channel
 
 
 def replaceBy(obj, info):
-    value = obj["replaced_by"]
-    if not pd.isnull(value):
-        return value
-    return None
+    return obj[Channel.REPLACED_BY]

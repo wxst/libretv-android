@@ -1,8 +1,5 @@
-import pandas as pd
+from schema.mysql import Channel
 
 
 def city(obj, info):
-    value = obj["city"]
-    if not pd.isnull(value):
-        return value
-    return None
+    return obj[Channel.CITY]

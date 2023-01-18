@@ -1,2 +1,5 @@
+from schema.mysql import Stream
+
+
 def resolution(obj, info):
-    return "[resolution] Not implemented yet"
+    return obj[Stream.RESOLUTION]

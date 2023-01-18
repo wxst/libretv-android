@@ -1,2 +1,5 @@
+from schema.mysql import Channel
+
+
 def name(obj, info):
-    return obj["name"]
+    return obj[Channel.NAME]

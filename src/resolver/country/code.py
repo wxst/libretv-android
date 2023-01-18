@@ -1,2 +1,5 @@
+from schema.mysql import Country
+
+
 def code(obj, info):
-    return obj["code"]
+    return obj[Country.CODE]

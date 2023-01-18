@@ -1,2 +1,5 @@
+from schema.mysql import Channel
+
+
 def logo(obj, info):
-    return obj["logo"]
+    return obj[Channel.LOGO]
