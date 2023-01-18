@@ -15,4 +15,5 @@ def load_streams():
             m3u.parse_m3u(stream, check_live=False)
             _streams.append(pd.json_normalize(m3u.get_list(), sep="."))
 
-    return pd.concat(_streams)
+    streams = pd.concat(_streams)
+    return streams

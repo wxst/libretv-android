@@ -91,8 +91,8 @@ CREATE TABLE IF NOT EXISTS Stream(
   id_channel INT NOT NULL,
   name TINYTEXT NOT NULL,
   resolution VARCHAR(5),
-  label VARCHAR(11),
-  stream_url VARCHAR(2083) NOT NULL,
+  label VARCHAR(15),
+  url VARCHAR(2083) NOT NULL,
   FOREIGN KEY (id_channel) REFERENCES Channel(id_channel),
   PRIMARY KEY (id_stream)
 );

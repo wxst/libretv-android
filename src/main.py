@@ -7,7 +7,8 @@ from git import InvalidGitRepositoryError, NoSuchPathError
 
 from database import (category, language, country, country_language,
                       subdivision, subdivision_country, channel,
-                      channel_language, channel_category, blocklist)
+                      channel_language, channel_category, blocklist,
+                      stream)
 
 
 from constants import (IPTV_DATABASE_URL,
@@ -69,15 +70,27 @@ if (__name__ == "__main__"):
 
     # loading data to mysql database
     category.load()
+    print("Category loaded")
     language.load()
+    print("Language loaded")
     country.load()
+    print("Country loaded")
     country_language.load()
+    print("Country_Language loaded")
     subdivision.load()
+    print("Subdivision loaded")
     subdivision_country.load()
+    print("Subdivision Country loaded")
     channel.load()
+    print("Channel loaded")
     channel_language.load()
+    print("Channel Language loaded")
     channel_category.load()
+    print("Channel Category Loaded")
     blocklist.load()
+    print("BlockList Loaded")
+    stream.load()
+    print("Stream Loaded")
 
     #  Running the GraphQL server
     print("[Warning]: running the server with uvicorn")
