@@ -2,6 +2,7 @@ type Query{
   version: String!
   mantainer: String!
   channels(length: Int!): [Channel]!
+  channel(id: String!): [Channel]!
   countries(length: Int!): [Country]!
   subdivisions: [Subdivision]!
   regions: [Region]!

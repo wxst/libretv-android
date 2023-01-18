@@ -1,4 +1,4 @@
-from streams import streams
+from streams import load_streams
 from constants import (IPTV_DATABASE_CHANNELS,
                        IPTV_DATABASE_COUNTRIES,
                        IPTV_DATABASE_BLOCKLIST,
@@ -16,4 +16,4 @@ db_categories = pd.read_csv(IPTV_DATABASE_CATEGORIES)
 db_regions = pd.read_csv(IPTV_DATABASE_REGIONS)
 db_subdivisions = pd.read_csv(IPTV_DATABASE_SUBDIVISIONS)
 db_languages = pd.read_csv(IPTV_DATABASE_LANGUAGES)
-db_streams = streams
+db_streams = load_streams()
