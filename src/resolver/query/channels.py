@@ -27,7 +27,6 @@ def channels(*_, length=None, search=None, stream=False, nsfw=False):
 
     if length:
         QUERY += f'LIMIT {length} '
-    print(QUERY)
     cursor = db.cursor()
     cursor.execute(QUERY)
     values = cursor.fetchall()
