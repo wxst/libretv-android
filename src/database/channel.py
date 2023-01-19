@@ -20,6 +20,7 @@ def load():
             alt_names,
             network,
             owners,
+            id_country,
             id_subdivision,
             broadcast_area,
             city,
@@ -35,16 +36,23 @@ def load():
     channel_data = ""
     for index, serie in db_channels.iterrows():
         subdivision = find_value(db_subdivisions, "code", serie["subdivision"])
+        country = find_value(db_countries, "code", serie["country"])
         if pd.isnull(subdivision):
             subdivision_value = "NULL"
         else:
-            subdivision_value = subdivision["indexes"][0]
+            subdivision_value = subdivision["indexes"][0]+1
+
+        if pd.isnull(country):
+            country_value = "NULL"
+        else:
+            country_value = country["indexes"][0]+1
 
         channel_data += f'({index+1},'\
                         f'"{serie["name"]}",'\
                         f'{_null(serie["alt_names"])},'\
                         f'{_null(serie["network"])},'\
                         f'{_null(serie["owners"])},'\
+                        f'{country_value},'\
                         f'{subdivision_value},'\
                         f'"{serie["broadcast_area"]}",'\
                         f'{_null(serie["city"])},'\

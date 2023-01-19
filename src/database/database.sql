@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS Channel(
   alt_names TINYTEXT,
   network TINYTEXT,
   owners TINYTEXT,
+  id_country INT,
   id_subdivision INT,
   broadcast_area TINYTEXT,
   city VARCHAR(50),
@@ -58,6 +59,7 @@ CREATE TABLE IF NOT EXISTS Channel(
   website VARCHAR(2083),
   logo VARCHAR(2083),
   FOREIGN KEY (id_subdivision) REFERENCES Subdivision(id_subdivision),
+  FOREIGN KEY (id_country) REFERENCES Country(id_country),
   PRIMARY KEY (id_channel)
 );
 
