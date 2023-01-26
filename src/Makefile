@@ -1,3 +1,4 @@
 run:
-	python server.py
-	python -m uvicorn api:app 
+	#python server.py
+	#python -m uvicorn api:app
+	python epg.py

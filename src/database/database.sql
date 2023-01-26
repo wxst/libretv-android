@@ -102,8 +102,11 @@ CREATE TABLE IF NOT EXISTS Stream(
 CREATE TABLE IF NOT EXISTS Epg(
   id_epg INT NOT NULL AUTO_INCREMENT,
   id_channel INT NOT NULL,
-  language VARCHAR(2),
+  source VARCHAR(50),
+  id_language INT NOT NULL,
   site_id  VARCHAR(50),
   channel_name VARCHAR(50),
-  PRIMARY KEY(id_epg)
+  FOREIGN KEY (id_language) REFERENCES Language(id_language),
+  FOREIGN KEY (id_channel) REFERENCES Channel(id_channel),
+  PRIMARY KEY(id_epg),
 ); 

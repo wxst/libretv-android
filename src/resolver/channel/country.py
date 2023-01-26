@@ -1,8 +1,9 @@
 from schema.mysql import Channel
-from db import db
+from db import connect as db_connect
 
 
 def country(obj, info):
+    db = db_connect()
     cursor = db.cursor()
     id_channel = obj[Channel.ID_CHANNEL]
 

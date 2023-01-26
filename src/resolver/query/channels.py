@@ -1,7 +1,8 @@
-from db import db
+from db import connect as db_connect
 
 
 def channels(*_, length=None, search=None, stream=False, nsfw=False):
+    db = db_connect()
     QUERY = "SELECT Channel.* from Channel "
 
     if stream:

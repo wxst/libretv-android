@@ -7,12 +7,36 @@ from mysql.connector import Error, errorcode
 config = {
     "user": "iptv-api",
     "database": "iptv",
-    "password": "iptv-api"
+    "password": "iptv-api",
 }
 
+db = None
 
 # Create mysql database ConnectionAbortedError
+
+
+def create():
+    """ Creates the schemas behind database """
+    global db
+    # Create table schemas
+    cursor = db.cursor()
+    with open("./database/database.sql") as f:
+        schema = f.read()
+    cursor.execute(schema, multi=True)
+
+    time.sleep(1)  # Timeout to created all tables
+
+    # loading all categories
+    if not db.is_connected():
+        db = mysql.connector.connect(**config)
+
+
 def connect():
+    """ Get connection to the database either is connected """
+    global db
+    if db and db.is_connected():
+        return db
+
     """ Create database scheme """
     while True:
         try:
@@ -32,18 +56,11 @@ def connect():
                 except Error as err:
                     if err.errno == errorcode.ER_BAD_DB_ERROR:
                         cursor.execute(f'CREATE DATABASE {config["database"]}')
-
-    # Create table schemas
-    cursor = db.cursor()
-    with open("./database/database.sql") as f:
-        schema = f.read()
-    cursor.execute(schema, multi=True)
-
-    time.sleep(1)  # Timeout to created all tables
-
-    # loading all categories
-    if not db.is_connected():
-        db = mysql.connector.connect(**config)
     return db
 
-db = connect()
+
+def init():
+    """ Initialize the database and creates schemas """
+    global db
+    connect()
+    create()

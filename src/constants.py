@@ -11,6 +11,7 @@ IPTV_STREAM_PATH = os.path.join(IPTV_PATH, "stream")
 
 IPTV_EPG_URL = "git@github.com:iptv-org/epg.git"
 IPTV_EPG_PATH = os.path.join(IPTV_PATH, "epg")
+IPTV_EPG_SITES_PATH = os.path.join(IPTV_EPG_PATH, "sites")
 
 IPTV_DATABASE_CSV_PATH = os.path.join(IPTV_DATABASE_PATH, "data")
 IPTV_DATABASE_CHANNELS = os.path.join(IPTV_DATABASE_CSV_PATH, "channels.csv")
