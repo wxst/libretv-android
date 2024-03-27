@@ -1,3 +1,9 @@
+# Ignore docker files
+.database
+
+# Ignore python environment
+.iptv-api
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

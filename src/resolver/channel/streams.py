@@ -3,6 +3,7 @@ from db import connect as db_connect
 
 
 def streams(obj, info):
+    print(obj, info)
     db = db_connect()
     cursor = db.cursor()
     id_channel = obj[Channel.ID_CHANNEL]

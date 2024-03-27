@@ -1,39 +1,51 @@
-import time
+import os
 
 import mysql.connector
 from mysql.connector import Error, errorcode
 
 # Mysql Configuration
+
+"""
 config = {
-    "user": "iptv-api",
-    "database": "iptv",
-    "password": "iptv-api",
+    "user": os.environ['DB_USER'],
+    "database": os.environ['DB_NAME'],
+    "password": os.environ['DB_PASSWORD'],
+    "host": os.environ['DB_HOST'],
+    "port": os.environ['DB_PORT'],
+    "autocommit": True
+}
+"""
+
+config = {
+    "user": "iptvapi",
+    "database": "iptvapi",
+    "password": "iptvapi",
+    "host": "localhost",
+    "port": "3306",
+    "autocommit": True
 }
 
-db = None
 
 # Create mysql database ConnectionAbortedError
-
-
-def create():
+def create(db):
     """ Creates the schemas behind database """
-    global db
     # Create table schemas
     cursor = db.cursor()
     with open("./database/database.sql") as f:
-        schema = f.read()
-    cursor.execute(schema, multi=True)
+        try:
+            tables = f.read().split(';')
+            for table in tables:
+                if table != "" and table != "\n":
+                    cursor.execute(table + ";")
+        except Exception as e:
+            print(e)
 
-    time.sleep(1)  # Timeout to created all tables
-
-    # loading all categories
-    if not db.is_connected():
-        db = mysql.connector.connect(**config)
+    cursor.close()
 
 
 def connect():
     """ Get connection to the database either is connected """
-    global db
+    db = None
     if db and db.is_connected():
         return db
 
@@ -43,6 +55,7 @@ def connect():
             db = mysql.connector.connect(**config)
             break
         except Error as err:
+            print(err)
             if err.errno == errorcode.ER_BAD_DB_ERROR:
                 db = mysql.connector.connect(
                     user=config["user"],
@@ -56,11 +69,15 @@ def connect():
                 except Error as err:
                     if err.errno == errorcode.ER_BAD_DB_ERROR:
                         cursor.execute(f'CREATE DATABASE {config["database"]}')
+                        cursor.close()
     return db
 
 
 def init():
     """ Initialize the database and creates schemas """
-    global db
-    connect()
-    create()
+    db = connect()
+    create(db)
+    return db
+
+
+db = init()

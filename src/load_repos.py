@@ -3,12 +3,6 @@ import time
 from git import Repo, RemoteProgress
 from git import InvalidGitRepositoryError, NoSuchPathError
 
-from database import (category, language, country, country_language,
-                      subdivision, subdivision_country, channel,
-                      channel_language, channel_category, blocklist,
-                      stream)
-
-
 from constants import (IPTV_DATABASE_URL,
                        IPTV_DATABASE_PATH,
                        IPTV_STREAM_URL,
@@ -39,7 +33,8 @@ def load_repo(url, path):
             url=url,
             to_path=path,
             progress=CloneProgress(),
-            branch="master"
+            branch="master",
+            depth=1
         )
 
     # Check updates
@@ -65,16 +60,3 @@ if (__name__ == "__main__"):
         load_repo(IPTV_STREAM_URL, IPTV_STREAM_PATH),
         load_repo(IPTV_EPG_URL, IPTV_EPG_PATH)
     ]
-
-    # loading data to mysql database
-    category.load()
-    language.load()
-    country.load()
-    country_language.load()
-    subdivision.load()
-    subdivision_country.load()
-    channel.load()
-    channel_language.load()
-    channel_category.load()
-    blocklist.load()
-    stream.load()

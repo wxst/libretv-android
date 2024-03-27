@@ -1,9 +1,10 @@
-from db import db
 from data import db_categories
+from db import db
 import time
 
 
 def load():
+    print(db)
     """ Load to database Category table """
     cursor = db.cursor()
     CATEGORY_INSERT = """
