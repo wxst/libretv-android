@@ -5,23 +5,12 @@ from mysql.connector import Error, errorcode
 
 # Mysql Configuration
 
-"""
 config = {
     "user": os.environ['DB_USER'],
     "database": os.environ['DB_NAME'],
     "password": os.environ['DB_PASSWORD'],
     "host": os.environ['DB_HOST'],
     "port": os.environ['DB_PORT'],
-    "autocommit": True
-}
-"""
-
-config = {
-    "user": "iptvapi",
-    "database": "iptvapi",
-    "password": "iptvapi",
-    "host": "localhost",
-    "port": "3306",
     "autocommit": True
 }
 
