@@ -1,4 +1,4 @@
-# IPTV GraphQL
+# IPTV API
 This is a GraphQL api to the [iptv-org database](https://github.com/iptv-org/database)
 
 ## Requirements
@@ -7,14 +7,19 @@ You must have the following software to run the api
 * Docker Compose
 
 ## API URL
-http://104.208.76.45
+You should used the api from the following link:
+https://iptv-api.learnofficial.org
 
 ## Getting Started
-To start with this api you need install the requirements.
-and then run the main file.
+You first copy the `dev.env` to `.env` and then run
 ```bash
-python -m pip install -r requirements.txt
-python src/main.py
+docker compose up -d
+```
+This only runs the server but you must seed the database
+to do that
+
+```bash
+docker compose exec core python /app/src/parse_data.py
 ```
 
 ## Schemas
