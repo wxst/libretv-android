@@ -25,3 +25,5 @@ IPTV_DATABASE_SUBDIVISIONS = os.path.join(
     IPTV_DATABASE_CSV_PATH, "subdivisions.csv")
 
 IPTV_STREAM_M3U = os.path.join(IPTV_STREAM_PATH, "streams")
+
+DATABASE_MAX_QUERY_LENGTH = 100

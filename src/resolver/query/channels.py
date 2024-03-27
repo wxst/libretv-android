@@ -1,4 +1,5 @@
 from db import connect as db_connect
+from constants import DATABASE_MAX_QUERY_LENGTH
 
 
 def channels(*_, length=None, search=None, stream=False, nsfw=False):
@@ -26,8 +27,11 @@ def channels(*_, length=None, search=None, stream=False, nsfw=False):
 
         QUERY += "Channel.is_nsfw = 0 "
 
-    if length:
+    if length < DATABASE_MAX_QUERY_LENGTH:
         QUERY += f'LIMIT {length} '
+    else:
+        QUERY += f'LIMIT {DATABASE_MAX_QUERY_LENGTH} '
+
     cursor = db.cursor()
     cursor.execute(QUERY)
     values = cursor.fetchall()
