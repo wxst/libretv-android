@@ -15,11 +15,19 @@ You first copy the `dev.env` to `.env` and then run
 ```bash
 docker compose up -d
 ```
-This only runs the server but you must seed the database
-to do that
+This only runs the server but you must seed the database using
+the following steps.
+
+### Seed the database
+First copy the data using
+```bash
+docker compose exec core python /app/load_repos.py
+```
+
+then, run the seeder using the following command
 
 ```bash
-docker compose exec core python /app/src/parse_data.py
+docker compose exec core python /app/parse_data.py
 ```
 
 ## Schemas
