@@ -10,6 +10,13 @@ class ScaffoldPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: body);
+    return Scaffold(
+        body: SafeArea(
+      top: true,
+      bottom: true,
+      left: true,
+      right: true,
+      child: body,
+    ));
   }
 }

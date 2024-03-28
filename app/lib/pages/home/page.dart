@@ -5,11 +5,13 @@ import 'package:libretv/pages/home/bloc/event.dart';
 import 'package:libretv/pages/home/bloc/state.dart';
 import 'package:libretv/pages/scaffold.dart';
 import 'package:libretv/service_locator.dart';
+import 'package:media_kit/media_kit.dart';
+import 'package:media_kit_video/media_kit_video.dart';
 
 class HomePage extends StatefulWidget {
   static const String path = '/';
   late final HomePageBloc homePageBloc;
-   HomePage({super.key}){
+  HomePage({super.key}) {
     homePageBloc = getIt.get<HomePageBloc>();
   }
 
@@ -18,10 +20,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late final Player player = Player();
+  late final VideoController controller = VideoController(player);
+
   @override
   void initState() {
     widget.homePageBloc.add(HomePageFetch());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
   }
 
   @override
@@ -36,7 +47,23 @@ class _HomePageState extends State<HomePage> {
             return const Center(child: Text("Loading"));
         }
 
-        return const Center(child: Text("In Development"));
+        Size size = MediaQuery.of(context).size;
+
+        return Column(
+          children: [
+            SizedBox(width: size.width, height: 50, child: const Text("Search Bar"),),
+            SizedBox(
+                width: size.width,
+                height: size.width * (9.0/16.0),
+                child: Video(controller: controller)),
+            TextButton(
+                onPressed: () {
+                  player.open(Media(
+                      "http://stream.flynetwifi.com:1935/live/mobile-062/playlist.m3u8"));
+                },
+                child: const Text("Open"))
+          ],
+        );
       },
     ));
   }
