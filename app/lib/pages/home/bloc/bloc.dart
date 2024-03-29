@@ -17,11 +17,12 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       emit(HomePageLoadingState());
       final res = await graphQLClient.query(QueryOptions(document: gql("""
 query {
-  channels (length:20, stream:true, search:"${event.search}"){
+  channels (length:100, stream:true, search:"${event.search}"){
     id
     logo
     name
     streams{
+      resolution
       url
     }
   }

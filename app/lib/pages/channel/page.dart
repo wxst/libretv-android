@@ -73,7 +73,7 @@ class _ChannelPageState extends State<ChannelPage> {
                                     : Colors.white,
                               ),
                               child: Text(
-                                "Stream ${entry.key.toString()}",
+                                entry.value.quality,
                                 style: TextStyle(
                                   color: entry.key == currentStream
                                       ? Colors.white
