@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:libretv/pages/channel/page.dart';
 import 'package:libretv/pages/home/bloc/bloc.dart';
 import 'package:libretv/pages/home/bloc/event.dart';
 import 'package:libretv/pages/home/bloc/state.dart';
 import 'package:libretv/pages/scaffold.dart';
 import 'package:libretv/service_locator.dart';
-import 'package:media_kit/media_kit.dart';
-import 'package:media_kit_video/media_kit_video.dart';
 
 class HomePage extends StatefulWidget {
   static const String path = '/';
@@ -20,51 +20,91 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late final Player player = Player();
-  late final VideoController controller = VideoController(player);
+  TextEditingController search = TextEditingController();
 
   @override
   void initState() {
-    widget.homePageBloc.add(HomePageFetch());
+    widget.homePageBloc.add(HomePageFetch(search: search.text));
     super.initState();
   }
 
   @override
   void dispose() {
-    player.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldPage(body: BlocBuilder<HomePageBloc, HomePageState>(
-      builder: (BuildContext context, HomePageState state) {
-        switch (state) {
-          case HomePageInitialState():
-            return const Center(child: Text("Initial State"));
+    Size size = MediaQuery.of(context).size;
 
-          case HomePageLoadingState():
-            return const Center(child: Text("Loading"));
-        }
-
-        Size size = MediaQuery.of(context).size;
-
-        return Column(
-          children: [
-            SizedBox(width: size.width, height: 50, child: const Text("Search Bar"),),
-            SizedBox(
-                width: size.width,
-                height: size.width * (9.0/16.0),
-                child: Video(controller: controller)),
-            TextButton(
-                onPressed: () {
-                  player.open(Media(
-                      "http://stream.flynetwifi.com:1935/live/mobile-062/playlist.m3u8"));
+    return ScaffoldPage(
+        body: Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+          width: size.width,
+          height: 40,
+          child: const Text("LibreTV"),
+        ),
+        Container(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          width: size.width,
+          height: 50,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(child: TextField(controller: search)),
+              const SizedBox(width: 20, height: 50),
+              GestureDetector(
+                onTap: () {
+                  widget.homePageBloc.add(HomePageFetch(search: search.text));
                 },
-                child: const Text("Open"))
-          ],
-        );
-      },
+                child: const Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Icon(Icons.search)),
+              )
+            ],
+          ),
+        ),
+        SizedBox(width: size.width, height: 20),
+        BlocBuilder<HomePageBloc, HomePageState>(
+          builder: (BuildContext context, HomePageState state) {
+            switch (state) {
+              case HomePageLoadingState():
+                return const Center(child: Text("Loading"));
+              case HomePageLoadedState():
+                return Expanded(
+                  child: GridView.count(
+                      crossAxisCount: 3,
+                      children: state.channels
+                          .map((channel) => Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () => {
+                                      context.push(ChannelPage.path,
+                                          extra: state.channels.firstWhere(
+                                              (target) =>
+                                                  target.id == channel.id))
+                                    },
+                                    child: Container(
+                                        width: 80,
+                                        height: 80,
+                                        decoration: BoxDecoration(
+                                            border: Border.all()),
+                                        child: Image.network(channel.logo)),
+                                  ),
+                                  Text(channel.name),
+                                ],
+                              ))
+                          .toList()),
+                );
+            }
+
+            return const Center(child: Text("Initial State"));
+          },
+        ),
+      ],
     ));
   }
 }
