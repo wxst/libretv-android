@@ -14,13 +14,13 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Setup JDK
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: '17'
 
     - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
+      uses: android-actions/setup-android@v4
       with:
         packages: 'platforms;android-33 build-tools;33.0.2'
 
@@ -28,7 +28,7 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: 缓存 Gradle 依赖
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           ~/.gradle/caches
@@ -39,7 +39,7 @@ jobs:
       run: ./gradlew assembleDebug
 
     - name: 上传 APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: libretv-debug-apk
         path: app/build/outputs/apk/debug/*.apk
